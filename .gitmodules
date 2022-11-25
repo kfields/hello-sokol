@@ -7,9 +7,6 @@
 [submodule "3rdparty/sokol"]
 	path = 3rdparty/sokol
 	url = https://github.com/floooh/sokol
-[submodule "3rdparty/fmt"]
-	path = 3rdparty/fmt
-	url = https://github.com/fmtlib/fmt
 [submodule "3rdparty/glm"]
 	path = 3rdparty/glm
 	url = https://github.com/g-truc/glm

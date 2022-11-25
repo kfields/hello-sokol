@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include <fmt/core.h>
+#include <format>
 
 #include <glad/gl.h>
 #include <SDL.h>
@@ -42,7 +42,7 @@ int main(int, char **)
 
   if (sdl_window == nullptr)
   {
-    std::cout << fmt::format("SDL Window could not be created: {}\n", SDL_GetError());
+    std::cout << std::format("SDL Window could not be created: {}\n", SDL_GetError());
     return -1;
   }
 
@@ -52,7 +52,7 @@ int main(int, char **)
 
   if (!SDL_GetWindowWMInfo(sdl_window, &wmi, SDL_SYSWM_CURRENT_VERSION))
   {
-    std::cout << fmt::format("SDL_SysWMinfo could not be retrieved: {}\n", SDL_GetError());
+    std::cout << std::format("SDL_SysWMinfo could not be retrieved: {}\n", SDL_GetError());
     return -1;
   }*/
 
@@ -63,7 +63,7 @@ int main(int, char **)
 
   GLADloadfunc gl_proc_resolver = (GLADloadfunc)SDL_GL_GetProcAddress;
   int version = gladLoadGL(gl_proc_resolver);
-  std::cout << fmt::format("OpenGL {}.{} loaded\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+  std::cout << std::format("OpenGL {}.{} loaded\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
 
   /* setup sokol_gfx */
   sg_desc sgDesc{0};

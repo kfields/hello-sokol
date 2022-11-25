@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 3.4)
 
 set(THIS HelloSokol)
-project(${THIS} LANGUAGES CXX)
+project(${THIS} LANGUAGES CXX C)
 
 include(./cmake/Config.cmake)
 
 #
 # fmt
 #
-add_subdirectory(3rdparty/fmt)
+set (CMAKE_CXX_STANDARD 20)
+set (CMAKE_C_STANDARD 99)
+#add_subdirectory(3rdparty/fmt)
 
 #
 # GLM
@@ -43,10 +45,10 @@ if(${ATT_RENDERER_GL})
     add_subdirectory(glad)
 endif()
 
-add_executable(${THIS} "main.cpp")
+add_executable(${THIS} "triangle.cpp")
 
-include(./cmake/Fmt.cmake)
-USES_FMT(${THIS})
+#include(./cmake/Fmt.cmake)
+#USES_FMT(${THIS})
 include(./cmake/Sdl.cmake)
 USES_SDL(${THIS})
 include(./cmake/Glad.cmake)

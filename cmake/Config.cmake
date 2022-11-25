@@ -8,6 +8,7 @@ include(CMakePackageConfigHelpers)
 include(CMakeDependentOption)
 
 set(ATT_STATIC_PIC ON)
+
 #
 # Directories
 #
@@ -36,18 +37,16 @@ endif()
 # Renderer
 #
 
-#option(ATT_RENDERER_GL "Use GL" OFF)
-#cmake_dependent_option(ATT_RENDERER_VULKAN "Use Vulkan" ON
-#                       "ATT_PLATFORM_LINUX; NOT ATT_RENDERER_GL" OFF)
-
+# option(ATT_RENDERER_GL "Use GL" OFF)
+# cmake_dependent_option(ATT_RENDERER_VULKAN "Use Vulkan" ON
+# "ATT_PLATFORM_LINUX; NOT ATT_RENDERER_GL" OFF)
 set(ATT_RENDERER_GL ON)
 set(ATT_RENDERER_VULKAN OFF)
 
 option(ATT_WM_WAYLAND "Use Wayland" OFF)
 cmake_dependent_option(ATT_WM_X11 "Use X11" ON "ATT_PLATFORM_LINUX; NOT ATT_WM_WAYLAND" OFF)
 
-
-set(ATT_COMPILE_DEFS 
+set(ATT_COMPILE_DEFS
     NOMINMAX=1
 )
 
@@ -58,19 +57,5 @@ if(${ATT_WM_X11})
 elseif(${ATT_WM_WAYLAND})
     set(ATT_COMPILE_DEFS ${ATT_COMPILE_DEFS}
         SDL_VIDEO_DRIVER_WAYLAND=1
-    )
-endif()
-
-if(${ATT_RENDERER_GL})
-    set(ATT_COMPILE_DEFS ${ATT_COMPILE_DEFS}
-        BGFX_CONFIG_RENDERER_OPENGL=1
-        BGFX_CONFIG_RENDERER_OPENGLES=0
-        BGFX_CONFIG_RENDERER_VULKAN=0
-    )
-elseif(${ATT_RENDERER_VULKAN})
-    set(ATT_COMPILE_DEFS ${ATT_COMPILE_DEFS}
-        BGFX_CONFIG_RENDERER_OPENGL=0
-        BGFX_CONFIG_RENDERER_OPENGLES=0
-        BGFX_CONFIG_RENDERER_VULKAN=1
     )
 endif()
