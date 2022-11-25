@@ -15,6 +15,6 @@ cd build
 mkdir debug
 cd debug
 cmake -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Debug ../..
-
+#or
 cmake -GNinja -DCMAKE_BUILD_TYPE=Debug ../..
 ```
